@@ -27,7 +27,7 @@ public:
 	T operator[](size_t) const;
 	T& operator[](size_t);
 
-	T& pop();
+	void pop();
 	void push_back(const T&);
 	void pop_back();
 
@@ -128,34 +128,25 @@ bool Vector<T>::isEmpty() const
 template<typename T>
 inline size_t Vector<T>::getSize() const
 {
-	return size_t();
+	return this->size;
 }
 
 template<typename T>
 inline size_t Vector<T>::getCapacity() const
 {
-	return size_t();
+	return this->capacity;
 }
 
 template<typename T>
-inline T& Vector<T>::pop()
+inline void Vector<T>::pop()
 {
-	T* newBuffer = new T[this->size - 1];
-
-	for (size_t i = 0; i < this->size - 1; i++)
-	{
-		newBuffer[i] = this->data[i + 1];
+	T* newBuffer = new T[size - 1];
+	for (size_t i = 0; i < size - 1; i++) {
+		newBuffer[i] = data[i + 1];
 	}
-
-	T popped = this->data[0];
-
-	this->size--;
-	this->destroy();
-	this->data = newBuffer;
-
-	delete[] newBuffer;
-
-	return popped;
+	size--;
+	delete[] data;
+	data = newBuffer;
 }
 
 template<typename T>

@@ -3,14 +3,13 @@
 class Player
 {
 private:
-	char* name;
+	char name[128];
 	int age;
 	int wins;
 	double cWins;
 	int currentPoints;
 
 	void copy(const Player&);
-	void destroy();
 
 public:
 	Player();
@@ -18,8 +17,10 @@ public:
 	Player(const char* _name, int _wins, double _cWins);
 	Player(const Player& other);
 	Player& operator=(const Player& other);
-	~Player();
 
+	bool isCorrect(const char* _name);
+
+	void setName(const char* _name);
 	const char* getName()const;
 
 	void change_points(int _currPoints);
@@ -27,4 +28,3 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, const Player& other);
 	friend std::istream& operator>>(std::istream& in, Player& other);
 };
-

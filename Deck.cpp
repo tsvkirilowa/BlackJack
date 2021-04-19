@@ -42,8 +42,7 @@ Deck::Deck(size_t _size)
 
 		for (size_t i = 0; i < cards_left; i++)
 		{
-			helperCard = helperDeck.pop();
-			cards.push_back(helperCard);
+			cards.push_back(helperDeck[i]);
 		}
 	}
 
@@ -80,8 +79,7 @@ Deck::Deck(size_t _size, const char* deck_id)
 
 		for (size_t i = 0; i < cards_left; i++)
 		{
-			helperCard = helperDeck.pop();
-			cards.push_back(helperCard);
+			cards.push_back(helperDeck[i]);
 		}
 	}
 
@@ -136,7 +134,8 @@ size_t Deck::getDeck_size() const
 
 Card& Deck::draw()
 {
-	Card drawn = cards.pop();
+	Card drawn = cards[0];
+	cards.pop();
 	cards.push_back(drawn);
 
 	return cards[cards.getSize() - 1];

@@ -9,7 +9,7 @@ Card::Card()
 	strcpy_s(id, 8, "Default");
 }
 
-Card::Card(Suit _suit, Rank _rank, const char* _id, int _points)
+Card::Card(Suit _suit, Rank _rank, const char* _id)
 {
 	suit = _suit;
 	rank = _rank;
@@ -36,11 +36,6 @@ void Card::set_id(const char* _id)
 	}
 }
 
-void Card::setPoints(int _points)
-{
-	this->points = _points;
-}
-
 Suit Card::getSuit() const
 {
 	return this->suit;
@@ -53,13 +48,13 @@ Rank Card::getRank() const
 
 int Card::currPoints() const
 {
-	int p = (int)this->rank;
+	int p = this->rank;
 	int choice = 0;
 	if (this->rank == J || this->rank == Q || this->rank == K)
 	{
 		return 10;
 	}
-	else if (this->rank == Ace)
+	if (this->rank == Ace)
 	{
 		std::cout << "Choose how many points you want to receive (1 or 11): ";
 		std::cin >> choice;
